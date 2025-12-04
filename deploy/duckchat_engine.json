@@ -1,0 +1,8 @@
+{
+  "type": "cli",
+  "path": "dist/DuckServer.exe",
+  "args": ["server"],
+  "env": {
+    "PYTHONUNBUFFERED": "1"
+  }
+}

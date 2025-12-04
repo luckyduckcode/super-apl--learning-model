@@ -1,0 +1,10 @@
+{
+  "type": "cli",
+  "path": "tools/external_stub.py",
+  "python": "${PYTHON_EXECUTABLE}",
+  "cwd": "${REPO_ROOT}",
+  "args": ["--profile", "demo"],
+  "env": {
+    "MODEL_CARD": "super-fast-demo"
+  }
+}

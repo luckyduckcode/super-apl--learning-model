@@ -1,0 +1,7 @@
+{
+  "type": "cli",
+  "path": "tools/external_stub.py",
+  "env": {
+    "MODEL_CARD": "super-fast-stub"
+  }
+}

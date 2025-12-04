@@ -1,0 +1,6 @@
+Prod External Integration Runbook
+================================
+1. Export EXTERNAL_MODEL_CONFIG pointing at deploy/external_model.json.
+2. Ensure the binary has read access to the duck models directory for tokenizer files.
+3. Restart DuckChat API via systemd (service duckchat-enterprise).
+4. Use /api/v1/status to confirm "quantization" reflects the native path.

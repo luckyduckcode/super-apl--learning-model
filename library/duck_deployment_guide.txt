@@ -1,0 +1,29 @@
+Duck Architecture & Deployment Guide
+====================================
+
+Core Components:
+1. DuckChatAPI - Python class managing LLM, RAG, and sessions
+2. External Model Bridge - Routes inference to CLI/HTTP/SO binaries
+3. LoRA Adapter System - Pluggable fine-tuned weights
+4. Chromadb RAG - Semantic retrieval from library/
+5. Flask REST API - HTTP interface for clients
+
+Deployment Flow:
+1. Set EXTERNAL_MODEL_CONFIG pointing at your native binary config
+2. Run: python scripts/duck_server_bootstrap.py --config <json> --adapter <name>
+3. Bootstrap auto-reindexes library and launches Flask on 0.0.0.0:5000
+4. Clients hit /api/v1/* endpoints; all inference routed through your binary
+
+Environment Variables:
+- EXTERNAL_MODEL_CONFIG: Path to JSON config for external model
+- DUCK_DEFAULT_ADAPTER: Auto-load adapter (folder name or absolute path)
+- DUCK_MODEL_OVERRIDE: Override HF model for testing (e.g., distilgpt2)
+
+Production Checklist:
+- [ ] Real binary path set in config JSON
+- [ ] Library seeded with domain docs
+- [ ] LoRA adapter trained or imported
+- [ ] Systemd service created for auto-start
+- [ ] Health check endpoint monitored
+- [ ] Logs aggregated (Flask output to syslog)
+- [ ] Port 5000 firewalled/load-balanced appropriately

@@ -1,0 +1,51 @@
+# Build directories
+build/
+dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large files
+*.pth
+*.pt
+*.safetensors
+*.onnx
+*.model
+models/
+
+# Temporary
+*.tmp
+*.temp
+.cache/
+tmp/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local

@@ -1,0 +1,51 @@
+cmake_minimum_required(VERSION 3.16)
+project(APLNestedArrayOptimizer LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# =====================================================================
+# Compiler Optimization Flags
+# =====================================================================
+
+# SIMD/Vectorization flags for maximum performance
+if(MSVC)
+    # Windows MSVC compiler
+    add_compile_options(/O2 /arch:AVX2 /fp:fast)
+    add_compile_definitions(WIN32 _WINDOWS)
+else()
+    # GCC/Clang on Linux/macOS
+    add_compile_options(-O3 -march=native -ffast-math -fopenmp)
+    add_compile_options(-mavx2 -mfma)
+    
+    # AVX-512 if available (for newer CPUs)
+    # add_compile_options(-mavx512f -mavx512cd)
+endif()
+
+# =====================================================================
+# Header-Only Library (just include directory)
+# =====================================================================
+
+add_library(nested_array_optimizer INTERFACE)
+target_include_directories(nested_array_optimizer INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
+)
+
+# =====================================================================
+# Benchmark Executable
+# =====================================================================
+
+add_executable(benchmark_nested_arrays benchmark.cpp)
+target_link_libraries(benchmark_nested_arrays nested_array_optimizer)
+
+if(NOT MSVC)
+    target_link_libraries(benchmark_nested_arrays m)  # Link math library
+endif()
+
+# =====================================================================
+# Installation
+# =====================================================================
+
+install(FILES nested_array_optimizer.hpp DESTINATION include)
+install(TARGETS benchmark_nested_arrays DESTINATION bin)

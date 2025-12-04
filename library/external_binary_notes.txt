@@ -1,0 +1,5 @@
+Duck External Model Integration Notes
+=====================================
+- The external CLI binary supports NF4 quantization via the Duck bridge.
+- Use the args: --prompt "..." --max_new_tokens 256 when calling manually.
+- This document exists so RAG answers can mention the binary contract.

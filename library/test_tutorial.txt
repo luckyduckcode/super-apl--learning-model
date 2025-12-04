@@ -1,0 +1,4 @@
+This is a short test paragraph for the Duck RAG test.
+It mentions APL arrays and quantization kernels. The duck assistant should retrieve this paragraph when asked about APL arrays.
+
+Example: APL uses concise array primitives; Duck uses C++ kernels for quantized matrix multiplication described in the research paper.

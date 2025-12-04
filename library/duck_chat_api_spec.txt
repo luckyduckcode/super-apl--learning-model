@@ -1,0 +1,35 @@
+Duck Chat API Specification
+===========================
+Version: 2.0
+
+REST Endpoints:
+- POST /api/v1/chat - Send a message, receive a response
+- POST /api/v1/session - Create a new chat session
+- GET /api/v1/session/<id> - Retrieve session history
+- GET /api/v1/sessions - List all active sessions
+- DELETE /api/v1/session/<id> - Clear a session
+- GET /api/v1/personality - Fetch Duck's personality config
+- GET /api/v1/status - Service status & device info
+- POST /api/v1/library/reindex - Rebuild the RAG vector store
+- POST /api/v1/adapter/load - Load a LoRA fine-tuned adapter
+
+Request Format:
+{
+  "message": "user query",
+  "session_id": "optional-session-id"
+}
+
+Response Format:
+{
+  "status": "success",
+  "session_id": "session_1",
+  "user_message": "...",
+  "duck_response": "...",
+  "message_count": 2,
+  "personality": {...},
+  "inference": {"quantization": "NF4 4-bit", "device": "GPU"}
+}
+
+Authentication: None (for internal deployment; add OAuth2/API keys for production)
+Rate Limit: Recommended 10 req/sec per client
+Timeout: 30 seconds for inference calls

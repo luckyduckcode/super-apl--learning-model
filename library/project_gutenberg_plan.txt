@@ -1,0 +1,16 @@
+Project Gutenberg Integration Notes
+==================================
+Source policy: https://www.gutenberg.org/policy/robot_access.html
+
+Dataset options referenced in planning:
+- Full English collection (compressed ZIM): ~60 GB. Intended for large mirrors; likely unsuitable for fast RAG refreshes.
+- NLP-friendly Hugging Face mirror: ~14.4 GB. Balanced option when we need wide coverage without the full mirror.
+- Smaller random-text subsets: 184 MB to 1.7 GB. Ideal for quick experiments or on-device packaging.
+- Plain text heuristic: a 300-page novel ≈ 1 MB, useful for estimating storage when curating custom bundles.
+
+Recommended workflow:
+1. Start with the 184 MB–1.7 GB subsets to validate ingestion and relevance scoring inside `library/`.
+2. Scale up to the 14.4 GB Hugging Face dataset if RAG recall is insufficient.
+3. Consider the 60 GB ZIM mirror only if we deploy a dedicated storage volume and streaming indexer.
+
+Reminder: Respect the robot access policy when automating downloads. Rate-limit scrapers and prefer official mirrors.

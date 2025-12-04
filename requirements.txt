@@ -1,0 +1,10 @@
+flask
+chromadb
+sentence-transformers
+transformers
+bitsandbytes
+peft
+datasets
+accelerate
+torch
+faiss-cpu  # optional
