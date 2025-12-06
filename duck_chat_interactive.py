@@ -6,9 +6,18 @@ import torch
 import torch.nn as nn
 import sys
 import time
-sys.path.insert(0, 'src/training')
+from pathlib import Path
 
-from quantize_1_58bit import QuantizedLinear, QuantizedTransformer
+# Add the project root to sys.path to allow imports from src
+project_root = Path(__file__).parent
+sys.path.append(str(project_root))
+
+try:
+    from src.training.quantize_1_58bit import QuantizedLinear, QuantizedTransformer
+except ImportError:
+    # Fallback for older structure
+    sys.path.insert(0, 'src/training')
+    from quantize_1_58bit import QuantizedLinear, QuantizedTransformer
 
 
 class DuckQuantized(nn.Module):
